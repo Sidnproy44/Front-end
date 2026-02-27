@@ -1,0 +1,121 @@
+What is the Document Object Model (DOM)?
+The Document Object Model (DOM) is a programming interface for web pages.
+In simple words:
+DOM is how JavaScript sees and controls your HTML page.
+When a browser loads an HTML file, it doesn’t just display it. It converts the HTML into a structured model called the DOM.
+
+The browser converts this:
+                            <html>
+                              <body>
+                                <h1>Hello</h1>
+                                <p>Welcome</p>
+                              </body>
+                            </html>
+
+Into a tree structure like:
+                            Document
+                               └── html
+                                    └── body
+                                         ├── h1
+                                         └── p
+Each element becomes a node in the tree.
+
+Why Is It Important?
+Because JavaScript uses the DOM to:
+Change text
+Change styles
+Add elements
+Remove elements
+Handle button clicks
+Validate forms
+Without DOM → JavaScript cannot interact with HTML.
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+1️⃣ DOM Methods (How JS Finds & Changes HTML)
+These are the tools JavaScript uses to talk to the DOM
+
+🔹 getElementById()
+document.getElementById("title")
+Finds element by ID.
+
+🔹 querySelector()
+document.querySelector(".box")
+Uses CSS selectors.
+It returns first matching element.
+
+🔹 querySelectorAll()
+document.querySelectorAll(".box")
+
+Returns NodeList (like array) of all matching elements.
+
+✏️ Changing Content
+element.innerText = "New Text"
+element.innerHTML = "<b>Bold</b>"
+🎨 Changing Styles
+element.style.color = "red"
+element.style.backgroundColor = "black"
+➕ Creating & Adding Elements
+let newDiv = document.createElement("div")
+newDiv.innerText = "Hello"
+
+document.body.appendChild(newDiv)
+
+Boom 💥 New element appears on page.
+
+2️⃣ DOM Events (How Pages React to Users)
+Events make websites interactive.
+
+Common Events
+click
+mouseover
+keydown
+submit
+change
+
+Example: Button Click
+                          HTML:
+                          <button id="btn">Click Me</button>
+
+                          JavaScript:
+                          let button = document.getElementById("btn")
+                          button.addEventListener("click", function() {
+                              alert("Button clicked!")
+                          })
+
+👉 User clicks
+👉 Browser detects event
+👉 JS runs function
+
+That’s interactivity.
+
+⚡ Event Flow (Advanced Concept)
+There are 3 phases:
+                              Capturing
+                              Target
+                              Bubbling
+By default, JavaScript uses event bubbling (inner → outer).
+This becomes important in large apps.
+------------------------------------------------------------------------------------------------------------------------------------------------------
+How DOM Works Internally in the Browser
+Step 1: Browser Receives HTML
+Server sends HTML file.
+
+Step 2: HTML → DOM Tree
+Browser parser converts HTML into DOM tree.
+
+Step 3: CSS → CSSOM Tree
+CSS is parsed into CSS Object Model.
+
+Step 4: DOM + CSSOM → Render Tree
+Browser combines them.
+
+Step 5: Layout & Paint
+Browser calculates positions and displays pixels.
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+How DOM Connects with JavaScript Engine
+Now we enter real backend-level understanding.
+JavaScript engine (like V8 in Chrome) does NOT directly know HTML.
+
+It interacts with:
+Browser APIs
+The DOM is a Web API provided by the browser, not part of JavaScript itself.
