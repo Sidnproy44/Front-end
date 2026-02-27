@@ -1,0 +1,249 @@
+A Simple HTML Document :
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<h1>My First Heading</h1>
+<p>My first paragraph.</p>
+
+</body>
+</html>
+
+The <!DOCTYPE html> declaration defines that this document is an HTML5 document
+The <html> element is the root element of an HTML page
+The <head> element contains meta information about the HTML page
+The <title> element specifies a title for the HTML page (which is shown in the browser's title bar or in the page's tab)
+The <body> element defines the document's body, and is a container for all the visible contents, such as headings, paragraphs, images, hyperlinks, tables, lists, etc.
+The <h1> element defines a large heading
+The <p> element defines a paragraph
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="margin: 0">
+    <!-- Write your code here -->
+  </body>
+  <script src="index.js"></script>
+</html>
+------------------------------------------------------------------------------------------------------------------------------------------
+What is an HTML Tag?
+An HTML tag is a keyword enclosed in angle brackets: <tagname>
+Most tags have:
+Opening tag
+Content
+Closing tag
+
+Example:
+<p>Hello</p>
+Here: <p> → opening tag  Hello → content  </p> → closing tag
+
+🧱 Types of HTML Tags
+1️⃣ Paired (Container) Tags
+They wrap content.
+                                        <h1>Heading</h1>
+                                        <div>Content</div>
+                                        <p>Paragraph</p>
+Structure:   <tag>content</tag>
+
+2️⃣ Self-Closing (Void) Tags
+They do NOT have closing tags.
+                                        <img src="image.jpg" alt="image">
+                                        <br>
+                                        <hr>
+                                        <input>
+These don’t wrap content.
+
+📂 Main Categories of HTML Tags
+Let’s organize them properly.
+
+🏗 1. Structure Tags
+Used to define document structure.
+
+                                        <html>
+                                        <head>                                        
+                                        <body>                                        
+                                        <title>                                        
+                                        <meta>                                        
+                                        <link>
+
+📝 2. Text / Formatting Tags
+Used to display text.
+                                        <h1> to <h6> → Headings
+                                        <p> → Paragraph  (also <pre>)
+                                        <b> → Bold
+                                        <strong> → Important text
+                                        <i> → Italic
+                                        <em> → Emphasized
+                                        <u> → Underline
+                                        <small> → Small text
+
+Example:                          <h1>Main Heading</h1>
+                                  <p>This is a paragraph.</p>
+
+🔗 3. Link & Media Tags
+                                        <a> → Link
+                                        <img> → Image
+                                        <video> → Video
+                                        <audio> → Audio
+                                        <source> → Media source
+
+Example:                          <a href="https://example.com">Visit</a>
+                                  <img src="cat.jpg" alt="Cat">
+
+📦 4. Layout / Container Tags
+Used for grouping.
+                                        <div> → Block container
+                                        <span> → Inline container
+                                        <section>
+                                        <article>
+                                        <header>
+                                        <footer>
+                                        <nav>
+
+📋 5. List Tags
+                                        <ul> → Unordered list
+                                        <ol> → Ordered list
+                                        <li> → List item
+
+Example:
+                                  <ul>
+                                    <li>Item 1</li>
+                                    <li>Item 2</li>
+                                  </ul>
+
+📊 6. Table Tags
+                                        <table>
+                                        <tr> → Table row
+                                        <td> → Table data
+                                        <th> → Table header
+
+Example:
+                                  <table>
+                                    <tr>
+                                      <th>Name</th>
+                                      <th>Age</th>
+                                    </tr>
+                                  </table>
+
+📝 7. Form Tags
+                                        <form>
+                                        <input>
+                                        <textarea>
+                                        <button>
+                                        <select>
+                                        <option>
+                                        <label>
+Example:
+                                <form>
+                                  <input type="text">
+                                  <button type="submit">Submit</button>
+                                </form>
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+If HTML tags are the “nouns”, attributes are the “adjectives” — they describe or modify the element.
+An attribute provides extra information about an element. It is always written inside the opening tag.
+
+Basic Syntax:   <tag attribute="value">Content</tag>                           eg:-  <a href="https://google.com">Visit Google</a>
+
+Most Important HTML Attributes. Let’s go through the common ones you’ll use daily.
+
+1️⃣ href (Hyperlink Reference)
+Used in <a> tag. It tells the browser where to go.
+
+2️⃣ src (Source)
+Used in images, scripts, videos.
+<img src="image.jpg" alt="My Image">
+src tells the browser where the file is located.
+
+3️⃣ alt (Alternative Text)
+Used in <img>.
+<img src="cat.jpg" alt="Cute Cat">
+Why important?
+Shows if image fails. Helps screen readers.Improves SEO
+
+4️⃣ id
+Gives unique identity to an element.
+<h1 id="main-heading">Hello</h1>
+Rules:
+Must be unique
+Used in CSS and JavaScript
+Think of it like a primary key in DBMS.
+
+5️⃣ class
+Used to group elements.
+<p class="text">Paragraph 1</p>
+<p class="text">Paragraph 2</p>
+Unlike id, multiple elements can share the same class.
+Think of it like a category.
+
+6️⃣ style
+Adds inline CSS.
+<p style="color:red;">Hello</p>
+But real-world advice: avoid inline styles in big projects.
+
+7️⃣ title
+Shows tooltip on hover.
+<p title="This is a tooltip">Hover over me</p>
+
+8️⃣ target
+Used with links.
+<a href="https://google.com" target="_blank">Open</a>
+_blank → opens in new tab.
+
+9️⃣ type
+Defines input type.
+<input type="text">
+<input type="password">
+<input type="number">
+This changes behavior.
+
+
+Common Boolean Attributes :-
+disabled
+checked
+readonly
+required
+hidden
+selected
+autofocus
+
+
+Custom data-* Attributes (Super Useful in Real Projects)
+HTML allows you to create custom attributes using:
+Example:-       <div data-user-id="101" data-role="admin"></div>
+Browser stores this safely without breaking HTML rules.
+
+Access in JavaScript
+let div = document.querySelector("div");
+div.dataset.userId   // "101"
+div.dataset.role     // "admin"
+
+Notice:
+data-user-id → becomes dataset.userId
+hyphen converts to camelCase
+
+Why data-* is Powerful
+Used for:
+Storing metadata
+Passing info to JS
+React/Vue internal tracking
+Testing hooks
+In real-world frontend apps, this is everywhere.
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
