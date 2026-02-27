@@ -1,0 +1,43 @@
+What is CSSOM?
+CSSOM stands for:
+Cascading Style Sheets Object Model
+
+It is the object representation of CSS, just like DOM is the object representation of HTML.
+
+🔹 Simple Definition
+
+HTML → converted into DOM
+CSS → converted into CSSOM
+
+Then:
+DOM + CSSOM → Render Tree → Layout → Paint
+
+This is how a webpage appears on screen.
+
+How Browser Builds CSSOM
+When browser reads CSS:
+                                      body {
+                                        background-color: blue;
+                                      }
+                                      
+                                      p {
+                                        color: red;
+                                      }
+
+It parses it and builds a tree-like structure internally. Something like this conceptually:
+
+                                    CSSStyleSheet
+                                     ├── Rule: body
+                                     │     └── background-color: blue
+                                     └── Rule: p
+                                           └── color: red
+That structure is CSSOM.
+
+Full Rendering Flow
+When page loads:
+
+Step 1️⃣ Parse HTML → Build DOM
+Step 2️⃣ Parse CSS → Build CSSOM
+Step 3️⃣ Combine DOM + CSSOM → Create Render Tree
+Step 4️⃣ Layout (calculate positions)
+Step 5️⃣ Paint pixels
