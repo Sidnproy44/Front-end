@@ -1,0 +1,394 @@
+1️⃣ Prototype (Shared by All Objects)
+Example:
+                            function Person(name) {
+                                this.name = name;
+                            }
+                            
+                            Person.prototype.sayHello = function() {
+                                console.log("Hello " + this.name);
+                            };
+
+What happened?
+sayHello is stored once
+All Person objects share it
+Memory efficient
+
+📦 Memory Structure
+p1 ---> Person.prototype ---> sayHello()
+
+
+2️⃣ Static (Belongs to the Class Itself)
+Example:
+                          function Person(name) {
+                              this.name = name;
+                          }
+
+                          Person.species = "Homo Sapiens";
+
+Usage:                   console.log(Person.species);  // Homo Sapiens
+
+❌ Not accessible via object:
+                          const p1 = new Person("Sam");
+                          console.log(p1.species);  // undefined
+
+ES6 Version (Cleaner Syntax)
+                                  class Person {
+                                      static species = "Homo Sapiens";
+                                  
+                                      constructor(name) {
+                                          this.name = name;
+                                      }
+                                  
+                                      sayHello() {
+                                          console.log("Hello " + this.name);
+                                      }
+                                  }
+
+When To Use What?
+✅ Use Prototype When:
+Function depends on instance data
+Example: getAge(), sayHello()
+
+✅ Use Static When:
+Function doesn’t depend on instance
+Utility methods
+Global counters
+Constants
+
+Why not put everything static?
+Because: Static methods don’t have access to instance properties (this.name). They aren’t inherited by objects
+
+Why not put everything in constructor?
+Because: Each object gets its own copy. Wastes memory
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+How does new work?
+Creates empty object
+Sets prototype link
+Binds this to object
+Returns object
+
+We can manually implement it:
+                              function myNew(Constructor, ...args) {
+                                  // Step 1
+                                  let obj = {};
+                              
+                                  // Step 2
+                                  obj.__proto__ = Constructor.prototype;
+                              
+                                  // Step 3
+                                  let result = Constructor.apply(obj, args);
+                              
+                                  // Step 4
+                                  return (typeof result === "object" && result !== null) ? result : obj;
+                              }
+
+                                function Person(name) {
+                                    this.name = name;
+                                }
+                                
+                                const p1 = myNew(Person, "Sam");
+                             
+                                console.log(p1.name); // Sam
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+How Prototype Chain Lookup Works
+When you access:      p1.sayHello();
+JS does NOT immediately look inside p1.
+It follows this algorithm:
+
+Step-by-step lookup:
+Look inside p1 itself.
+If not found → look inside p1.__proto__
+If not found → look inside its prototype’s prototype
+Continue until null
+If still not found → undefined
+
+Example:
+                      function Person(name) {
+                          this.name = name;
+                      }
+                      
+                      Person.prototype.sayHello = function() {
+                          console.log("Hello");
+                      };
+                      
+                      const p1 = new Person("Sam");
+                      
+                      p1.sayHello();
+
+Lookup path:
+                        p1
+                          ↓
+                        Person.prototype
+                          ↓
+                        Object.prototype
+                          ↓
+                        null
+                        That chain is called Prototype Chain
+-------------------------------------------------------------------------------------------------------------------------------------
+
+How instanceof Works Internally
+When you write:   p1 instanceof Person
+
+JS checks: Is Person.prototype somewhere in p1’s prototype chain?
+Internally it’s roughly like:
+                              function myInstanceof(obj, Constructor) {
+                                  let proto = obj.__proto__;
+                              
+                                  while (proto !== null) {
+                                      if (proto === Constructor.prototype) {
+                                          return true;
+                                      }
+                                      proto = proto.__proto__;
+                                  }
+                              
+                                  return false;
+                              }
+So:       p1 instanceof Person  // true
+Because:  p1.__proto__ === Person.prototype
+----------------------------------------------------------------------------------------------------------------------------------
+
+Difference Between __proto__ and prototype
+This one confuses everyone at first.
+
+🔹 prototype
+Belongs to constructor functions
+Used when creating new objects
+Example:                            function Person() {}
+                            console.log(Person.prototype);
+
+🔹 __proto__
+Belongs to objects
+Points to the object’s prototype
+Example:                          const p1 = new Person();
+                                  console.log(p1.__proto__ === Person.prototype); // true
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+JS inheritance is a little different from classical languages like Java or C++, because JS uses prototypal inheritance.
+
+Modern Way (ES6 Class Syntax). Much cleaner.
+                                class Person {
+                                    constructor(name) {
+                                        this.name = name;
+                                    }
+                                
+                                    sayHello() {
+                                        console.log("Hello " + this.name);
+                                    }
+                                }
+Child class:
+                                  class Student extends Person {
+                                      constructor(name, grade) {
+                                          super(name);  // calls parent constructor
+                                          this.grade = grade;
+                                      }
+                                  
+                                      study() {
+                                          console.log(this.name + " is studying");
+                                      }
+                                  }
+
+const s1 = new Student("Sam", "A");
+s1.sayHello();  // inherited
+s1.study();     // own method
+
+What Does extends Do?
+Behind the scenes:
+Student.prototype.__proto__ = Person.prototype;
+So it creates the same prototype chain as manual version.
+
+What Does super() Do?
+Inside child constructor:
+super(name);
+It calls the parent constructor.
+If you don’t call super() before using this, JS throws error.
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Method Overriding
+Overriding means: Child class provides its own version of a parent method.
+👇 Example
+                          class Person {
+                              greet() {
+                                  console.log("Hello from Person");
+                              }
+                          }
+                          
+                          class Student extends Person {
+                              greet() {
+                                  console.log("Hello from Student");
+                              }
+                          }
+const s1 = new Student();
+s1.greet(); // Hello from Student
+Because JS finds greet() in Student.prototype first and stops there.That’s overriding.
+--------------------------------------------------------------------------------------------------------------------------------------
+
+Using super in Methods
+Sometimes you want: Use parent logic + add extra behavior.
+Example:
+                                            class Person {
+                                                greet() {
+                                                    console.log("Hello");
+                                                }
+                                            }
+                                            
+                                            class Student extends Person {
+                                                greet() {
+                                                    super.greet();  // call parent version
+                                                    console.log("I am a student");
+                                                }
+                                            }
+
+Output:
+Hello
+I am a student
+
+🔹 Important
+super.method() works only inside class methods.
+Behind the scenes it basically calls:        Person.prototype.greet.call(this);
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Multiple Inheritance in JS?
+Short answer: ❌ JavaScript does NOT support multiple inheritance.
+You cannot do:
+class A {}
+class B {}
+class C extends A, B {}  // ❌ Not allowed
+
+But… you can simulate it using:
+✅ Mixins
+Example:
+                        const canStudy = {
+                            study() {
+                                console.log("Studying...");
+                            }
+                        };
+                        
+                        const canPlay = {
+                            play() {
+                                console.log("Playing...");
+                            }
+                        };
+
+                        class Student {}
+                        Object.assign(Student.prototype, canStudy, canPlay);
+                        
+                        const s1 = new Student();
+                        s1.study();
+                        s1.play();
+
+This copies methods into the prototype.
+That’s how JS handles “multiple behavior”.
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+Composition vs Inheritance (Very Important)
+
+🟢 Inheritance (IS-A relationship)
+                                class Animal {}
+                                class Dog extends Animal {}
+Dog IS-A Animal.
+Inheritance creates tight coupling.
+
+
+Composition (HAS-A relationship)
+Instead of inheriting:
+                            class Engine {
+                                start() {
+                                    console.log("Engine started");
+                                }
+                            }
+                            
+                            class Car {
+                                constructor() {
+                                    this.engine = new Engine();
+                                }
+                            
+                                startCar() {
+                                    this.engine.start();
+                                }
+                            }
+Car HAS-A Engine.More flexible.
+
+Why Composition Is Preferred
+Inheritance problems:
+Deep hierarchy
+Hard to modify
+Tight coupling
+Fragile base class problem
+
+Composition benefits:
+More modular
+Easier to change behavior
+Cleaner architecture
+Preferred in modern JS frameworks
+Most modern design patterns favor: Composition over Inheritance
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
