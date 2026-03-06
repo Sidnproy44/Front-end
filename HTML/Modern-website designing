@@ -1,0 +1,97 @@
+Why Modern Websites Rarely Write HTML Manually
+In the early days of the web, developers wrote pages like this:
+                                      <div class="product">
+                                        <img src="phone.jpg">
+                                        <h3>Phone</h3>
+                                        <p>$499</p>
+                                      </div>
+                                      
+                                      <div class="product">
+                                        <img src="laptop.jpg">
+                                        <h3>Laptop</h3>
+                                        <p>$999</p>
+                                      </div>
+
+If a site had 1000 products, developers would have to repeat this 1000 times. That’s inefficient and hard to maintain.
+So modern development uses templates, components, and data.
+
+1️⃣ HTML Is Generated From Data
+Instead of writing repeated HTML, developers store data like this:
+[
+  { "name": "Phone", "price": 499 },
+  { "name": "Laptop", "price": 999 }
+]
+
+Then code automatically generates the HTML.
+Example idea (simplified):
+
+                            products.map(product => {
+                              return `
+                                <div class="product">
+                                  <h3>${product.name}</h3>
+                                  <p>$${product.price}</p>
+                                </div>
+                              `;
+                            });
+So the HTML is created dynamically.
+
+2️⃣ Websites Use Components
+Modern frameworks break the UI into reusable components.
+Example component:
+                            <div class="product-card">
+                              <img src="image">
+                              <h3>Product Name</h3>
+                              <p>Price</p>
+                            </div>
+Instead of rewriting it, developers reuse it like:
+                              <ProductCard />
+                              <ProductCard />
+                              <ProductCard />
+
+Frameworks handle generating the HTML.
+Common frameworks include:
+React
+Vue.js
+Angular
+These frameworks produce the HTML automatically.
+
+3️⃣ The Browser Still Receives HTML
+Even though developers write components or templates, the browser still receives normal HTML in the end.
+Example result in the browser:
+                                <div class="product-card">
+                                  <h3>Phone</h3>
+                                  <p>$499</p>
+                                </div>
+The frameworks just generate it behind the scenes.
+
+4️⃣ Backend Servers Also Generate HTML
+For many websites, the server builds HTML dynamically.
+For example:
+online stores
+news sites
+social media feeds
+
+If you open a product page, the server inserts the product info into a template.
+Example template:
+                          <h1>{{product.name}}</h1>
+                          <p>{{product.price}}</p>
+
+The server replaces placeholders with real data.
+
+Common backend tools include:
+Node.js
+Django
+Laravel
+
+
+5️⃣ Why This Approach Is Better
+Efficiency
+One component can generate thousands of items.
+
+Maintainability
+Change the component once → updates everywhere.
+
+Dynamic content
+Data from databases can automatically appear on the page.
+
+
