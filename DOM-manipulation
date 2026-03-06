@@ -119,3 +119,67 @@ JavaScript engine (like V8 in Chrome) does NOT directly know HTML.
 It interacts with:
 Browser APIs
 The DOM is a Web API provided by the browser, not part of JavaScript itself.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+The DOM (Document Object Model) represents an HTML page as a tree of objects so JavaScript can read and modify it. The browser creates this structure when it loads the page.
+Example HTML:
+                        <body>
+                          <h1 id="title">Hello</h1>
+                          <p class="text">Paragraph 1</p>
+                          <p class="text">Paragraph 2</p>
+                        </body>
+JavaScript uses DOM methods to find elements in this tree.
+--------------------------------------------------------------------------------------------------------------------------
+
+1. getElementById()
+Selects one element by its id.
+let heading = document.getElementById("title");
+Returns one element
+ID must be unique
+Example:             heading.style.color = "red";
+
+
+2. getElementsByClassName()
+Selects all elements that have a specific class.
+let items = document.getElementsByClassName("text");
+Returns an HTMLCollection (array-like).
+Example:       items[0].style.color = "blue";
+
+
+3. getElementsByTagName()
+Selects all elements with a specific HTML tag.
+let paragraphs = document.getElementsByTagName("p");
+Example:          paragraphs[1].style.fontWeight = "bold";
+Also returns an HTMLCollection.
+
+
+4. querySelector()
+Selects the first element that matches a CSS selector.
+let element = document.querySelector(".text");
+Examples:
+                                    document.querySelector("#title")   // by id
+                                    document.querySelector(".text")    // by class
+                                    document.querySelector("p")        // by tag
+
+
+5. querySelectorAll()
+Selects all elements matching a CSS selector.
+let elements = document.querySelectorAll(".text");
+Returns a NodeList.
+Example:
+                                  elements.forEach(el => {
+                                    el.style.color = "green";
+                                  });
+
+Modern JavaScript mostly uses:
+                                querySelector()
+                                querySelectorAll()
+because they work with CSS selectors, which are more flexible.
+Example:   document.querySelector("div.container p.text")
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+
