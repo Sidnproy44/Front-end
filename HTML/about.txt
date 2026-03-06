@@ -34,7 +34,30 @@ The <p> element defines a paragraph
   </body>
   <script src="index.js"></script>
 </html>
-------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+The 15 Most Important HTML Tags Beginners Should Know
+
+These tags appear in almost every website.
+
+Tag	                      Purpose                          	Example
+<html>	               Root of the webpage              	<html>...</html>
+<head>	               Page information	                   metadata, title
+<title>	               Browser tab title	              <title>My Site</title>
+<body>	               Visible content	                 text, images, buttons
+<h1>–<h6>             	Headings	                       <h1>Main Title</h1>
+<p>	                    Paragraph                       	<p>Hello</p>
+<a>	                      Link	                         <a href="#">Link</a>
+<img>               	   Image                         	<img src="photo.jpg">
+<div>               	Block container	                    layout sections
+<span>	              Inline container                    style small text
+<ul>	                Unordered list                      	bullet list
+<ol>	                Ordered list	                       numbered list
+<li>	                List item	                           inside lists
+<form>	              Input form                        	login/signup
+<input>	              User input field	                   text boxes
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 What is an HTML Tag?
 An HTML tag is a keyword enclosed in angle brackets: <tagname>
 Most tags have:
