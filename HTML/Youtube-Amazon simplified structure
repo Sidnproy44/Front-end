@@ -1,0 +1,103 @@
+Example: Simplified Structure of YouTube
+A simplified HTML structure might look like this:
+                                                <body>
+                                                
+                                                <header>
+                                                  <!-- logo, search bar, profile -->
+                                                </header>
+                                                
+                                                <div class="container">
+                                                
+                                                  <aside class="sidebar">
+                                                    <!-- home, subscriptions, library -->
+                                                  </aside>
+                                                
+                                                  <main class="videos">
+                                                
+                                                    <div class="video-card">
+                                                      <img>
+                                                      <h3>Video title</h3>
+                                                      <p>Channel name</p>
+                                                    </div>
+                                                
+                                                    <div class="video-card">
+                                                      ...
+                                                    </div>
+                                                
+                                                  </main>
+                                                
+                                                </div>
+                                                
+                                                </body>
+Key idea:
+YouTube repeats the same component many times:
+video-card
+video-card
+video-card
+video-card
+
+Each card is built with HTML + CSS + JavaScript.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Example: Simplified Structure of Amazon
+A simplified structure might look like:
+                                            <header>
+                                              <!-- logo, location, search bar, cart -->
+                                            </header>
+                                            
+                                            <nav>
+                                              <!-- category menu -->
+                                            </nav>
+                                            
+                                            <main>
+                                            
+                                              <section class="product-grid">
+                                            
+                                                <div class="product-card">
+                                                  <img>
+                                                  <h3>Product name</h3>
+                                                  <p>Price</p>
+                                                  <button>Add to Cart</button>
+                                                </div>
+                                            
+                                              </section>
+                                            
+                                            </main>                                            
+                                            <footer>
+                                            </footer>
+Again, the same product card component repeats hundreds of times.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Modern websites are built using components.
+Examples:
+Navbar component
+Video card component
+Product card component
+Sidebar component
+Footer component
+
+Each component has its own:
+HTML structure
+CSS styling
+JavaScript behavior
+
+Frameworks like:
+React
+Angular
+Vue.js
+are designed specifically to build these reusable components.
+
+What the Browser Actually Sees:
+When you open a page on YouTube or Amazon, the browser builds something called the DOM (Document Object Model).
+Example structure:
+                    html
+                     └── body
+                          ├── header
+                          ├── nav
+                          ├── main
+                          │    ├── div (video card)
+                          │    ├── div (video card)
+                          │    ├── div (video card)
+                          │
+                          └── footer
+
