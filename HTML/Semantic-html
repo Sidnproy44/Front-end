@@ -1,0 +1,159 @@
+What is Semantic HTML?
+Semantic HTML means using HTML tags that describe the meaning of the content, not just its layout.
+Instead of using many generic <div> elements, HTML provides tags that tell the browser and developers what the content actually represents.
+
+Example:
+              <header>Website Header</header>
+              <nav>Navigation Menu</nav>
+              <main>Main Content</main>
+              <footer>Footer Information</footer>
+
+
+Why Semantic HTML is Important
+1️⃣ Better readability for developers
+When someone reads your code, they immediately understand the structure.
+Example:
+Using divs
+                        <div class="header"></div>
+                        <div class="menu"></div>
+                        <div class="content"></div>
+                        <div class="footer"></div>
+Using semantic HTML
+                        <header></header>
+                        <nav></nav>
+                        <main></main>
+                        <footer></footer>
+The second one is much clearer.
+
+2️⃣ Better for SEO (Search Engines)
+Search engines like Google understand your page structure better.
+For example:
+<article> → blog post
+<nav> → navigation menu
+<main> → main content
+This helps search engines rank content properly.
+
+3️⃣ Better for accessibility
+Screen readers used by visually impaired users rely on semantic tags.
+Example:
+A screen reader can jump directly to navigation if <nav> is used.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Common Semantic HTML Tags
+
+1.<header>
+Represents the top section of a page.
+Example:
+                        <header>
+                          <h1>My Website</h1>
+                          <p>Welcome to my blog</p>
+                        </header>
+Usually contains:
+logo
+title
+
+2.navigation
+<nav>
+Represents navigation links.
+Example:
+                            <nav>
+                              <a href="#">Home</a>
+                              <a href="#">About</a>
+                              <a href="#">Contact</a>
+                            </nav>
+Used for menus.
+
+3.<main>
+Represents the main content of the page.
+Example:
+                                <main>
+                                  <h2>Latest Articles</h2>
+                                  <p>This is the main content.</p>
+                                </main>
+Important rule:
+A page should usually have only one <main> element.
+
+4.<article>
+Used for independent content like:
+blog posts
+news articles
+forum posts
+Example:
+                                  <article>
+                                    <h2>HTML Basics</h2>
+                                    <p>This article explains HTML.</p>
+                                  </article>
+
+
+5.<section>
+Represents a group of related content.
+Example:
+                                    <section>
+                                      <h2>Our Services</h2>
+                                      <p>We provide web development.</p>
+                                    </section>
+
+
+<footer>
+Represents the bottom part of the webpage.
+Example:
+                                          <footer>
+                                            <p>© 2026 My Website</p>
+                                          </footer>
+Usually contains:
+copyright
+contact info
+links
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Complete Basic HTML Page Structure
+
+                                        <!DOCTYPE html>
+                                        <html lang="en">
+                                        
+                                        <head>
+                                            <meta charset="UTF-8">
+                                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                            <title>My Website</title>
+                                        </head>
+                                        
+                                        <body>
+                                        
+                                        <header>
+                                            <h1>My Website</h1>
+                                        </header>
+                                        
+                                        <nav>
+                                            <a href="#">Home</a>
+                                            <a href="#">About</a>
+                                            <a href="#">Contact</a>
+                                        </nav>
+                                        
+                                        <main>
+                                            <section>
+                                                <h2>Welcome</h2>
+                                                <p>This is the main content of the webpage.</p>
+                                            </section>
+                                        
+                                            <article>
+                                                <h2>Blog Post</h2>
+                                                <p>This is an example article.</p>
+                                            </article>
+                                        </main>
+                                        
+                                        <footer>
+                                            <p>© 2026 My Website</p>
+                                        </footer>
+                                        
+                                        </body>
+                                        </html>
+
+
+
+                                        
+                                        
+
+
+
