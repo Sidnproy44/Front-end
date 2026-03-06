@@ -156,6 +156,22 @@ Footer
                                                                   
 
 How HTML and CSS connect
+class="header" is written in HTML
+.header in CSS means “style the element whose class is header
+
+So this HTML:
+<div class="header">My Website</div>
+
+gets the CSS styling from:
+.header{
+  background: lightblue;
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+In CSS:
+.header → selects class="header"
+#header → selects id="header"
+div → selects all div elements
 																																
                                                                   
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
