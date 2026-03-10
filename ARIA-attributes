@@ -1,0 +1,231 @@
+1. What Are ARIA Attributes?
+ARIA = Accessible Rich Internet Applications
+ARIA attributes help assistive technologies (like screen readers) understand what an element does.
+
+Example problem:
+A visually styled button made with a <div> might look like a button, but a screen reader doesn't know it’s a button.
+ARIA fixes this.
+Example:              <div role="button">Submit</div>
+Now screen readers interpret it as a button.
+
+2. Why ARIA Exists
+Web pages today use lots of custom UI components:
+                    dropdown menus
+                    modals
+                    tabs
+                    sliders
+                    accordions
+But these are often built with <div> elements.
+Without ARIA:
+            screen readers can't understand them
+            keyboard navigation breaks
+            accessibility fails
+ARIA adds semantic meaning.
+
+3. Basic ARIA Structure
+ARIA attributes usually start with:  aria-
+Examples:
+            aria-label
+            aria-hidden
+            aria-expanded
+            aria-live
+            aria-controls
+            aria-describedby
+
+4. Visual Example: Screen Reader Interpretation
+Normal Button      [ Submit ]
+Screen reader reads:    "Submit button"
+
+Styled Div (Without ARIA)    [ Submit ]
+Screen reader reads:         "Submit"
+It doesn't know it's clickable.
+
+Styled Div With ARIA
+<div role="button">Submit</div>
+
+Screen reader reads:
+"Submit button"
+Now it understands the interaction type.
+
+5. Important ARIA Attributes
+
+aria-label
+Provides a label for elements.
+Example:       <button aria-label="Close menu">X</button>
+Visual:        [X]
+
+Screen reader says:    "Close menu button"
+This is common in icon buttons.
+
+aria-hidden
+Hides elements from screen readers.
+Example:     <span aria-hidden="true">★</span>
+Visual:      ★ Star icon
+Screen reader ignores the star.
+
+aria-expanded
+Used for dropdowns and accordions.
+Example:      <button aria-expanded="false">Menu</button>
+Visual:       Menu ▼
+If open:     <button aria-expanded="true">Menu</button>
+Screen reader says:    "Menu expanded"
+
+aria-describedby
+Provides extra description.
+Example:     <input type="password" aria-describedby="passwordHelp">
+             <p id="passwordHelp">Password must contain 8 characters</p>
+Screen reader reads:     Password input. Password must contain 8 characters.
+
+
+6. Real Industry Example: Accessible Dropdown
+                          HTML
+                          <button aria-haspopup="true" aria-expanded="false">
+                            Options
+                          </button>
+
+                          <ul role="menu">
+                            <li role="menuitem">Edit</li>
+                            <li role="menuitem">Delete</li>
+                          </ul>
+
+Visual:   [ Options ▼ ]
+              Edit
+             Delete
+Screen reader understands:  menu button
+                            menu items
+
+7. Accessible Modal Example
+Example:  
+                      <div role="dialog" aria-labelledby="title">
+                      <h2 id="title">Delete Item</h2>
+                      <p>Are you sure?</p>
+
+                      <button>Cancel</button>
+                      <button>Delete</button>
+                      </div>
+
+Screen reader reads:
+                      Dialog
+                      Delete Item
+                      Are you sure?
+This helps users know a modal has opened.
+
+
+8. ARIA Roles (Very Important)
+Roles tell assistive tools what an element represents.
+Examples:
+            role="button"
+            role="dialog"
+            role="menu"
+            role="navigation"
+            role="tab"
+            role="alert"
+
+Example:
+            <div role="alert">
+              Payment failed
+            </div>
+Screen reader immediately announces:      Alert: Payment failed
+
+
+9. Visual Example: Tabs Component
+Tabs UI:          [ Overview ] [ Reviews ] [ Pricing ]
+                          Overview Content
+
+Accessible version:
+
+                      <div role="tablist">
+                      
+                      <button role="tab" aria-selected="true">
+                      Overview
+                      </button>
+                      
+                      <button role="tab">
+                      Reviews
+                      </button>
+                      
+                      <button role="tab">
+                      Pricing
+                      </button>
+                      
+                      </div>
+
+Screen reader understands:
+                          tab list
+                          active tab
+                          navigation structure
+
+10. Golden Rule of ARIA (Important)
+Use native HTML whenever possible.
+
+Good:
+        <button>
+        <input>
+        <select>
+        <nav>
+
+Avoid:
+          <div role="button">
+
+Why?
+Because native HTML already has accessibility built in.
+ARIA is mainly for custom components.
+
+11. Bad ARIA Example
+❌ Bad:
+              <div role="button">Click</div>
+
+Better:
+              <button>Click</button>
+
+Because <button> already supports:
+keyboard navigation
+screen readers
+focus
+
+12. Common ARIA Attributes Cheat Sheet
+Attribute                              	Purpose
+aria-label	                        Accessible name
+aria-hidden	                    Hide from screen readers
+aria-expanded	                      Dropdown state
+aria-live	                          Announce updates
+aria-controls	                  Controls another element
+aria-describedby	                Extra description
+aria-checked	                      Checkbox state
+
+
+13. Example of aria-live
+Used in dynamic content like notifications.
+Example:
+              <div aria-live="polite">
+              Message sent
+              </div>
+Screen reader announces the update automatically.
+
+14. When Companies Use ARIA
+ARIA is heavily used in:
+                        Google Material UI
+                        Microsoft Fluent UI
+                        React component libraries
+                        Government websites
+                        Banking apps
+Because accessibility compliance (WCAG) is often required.
+
+15. Interview Question Example
+Q: What is ARIA in HTML?
+Answer: ARIA (Accessible Rich Internet Applications) is a set of attributes used to improve accessibility by providing additional semantics to HTML elements, enabling assistive technologies like screen readers to better interpret dynamic web content.
+
+16. Real Developer Tip
+When building components like:
+                          dropdowns
+                          modals
+                          tabs
+                          sliders
+Always test with:
+                  Tab key navigation
+                  Screen reader
+Tools:
+              Lighthouse
+              Axe DevTools
+              NVDA screen reader
+
