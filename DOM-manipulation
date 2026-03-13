@@ -179,6 +179,201 @@ Modern JavaScript mostly uses:
 because they work with CSS selectors, which are more flexible.
 Example:   document.querySelector("div.container p.text")
 
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Advance CSS Selectors : ---------
+
+1️⃣ Descendant selector
+              .descendant p{
+                  color: blue;
+                  font-style: italic;
+              }
+Meaning
+Select all <p> elements that are inside an element with class descendant (at any depth).
+
+Example HTML
+              <div class="descendant">
+                  <p>Paragraph 1</p>
+                  <div>
+                      <p>Paragraph 2</p>
+                  </div>
+              </div>
+Both paragraphs will be styled.
+
+Result
+        Paragraph 1 → blue italic
+        Paragraph 2 → blue italic
+
+Because the rule means:                 
+                    .descendant
+                       ↓
+                    any p inside
+
+
+2️⃣ Child selector
+                .child > p{
+                    color: red;
+                    font-weight: bold;
+                }
+Meaning
+Select only <p> elements that are direct children of .child.
+
+Example HTML
+                <div class="child">
+                    <p>Direct child</p>
+                
+                    <div>
+                        <p>Nested paragraph</p>
+                    </div>
+                </div>
+Result
+          Direct child → red bold
+          Nested paragraph → NOT styled
+Because > selects only direct children.
+
+
+
+3️⃣ Attribute selector
+                  input[type="text"]{
+                      border: 2px solid green;
+                      padding: 5px;
+                  }
+Meaning
+        Select <input> elements where:
+            type = text
+            Example HTML
+            <input type="text">
+            <input type="password">
+Result
+        text input → styled
+        password input → not styled
+
+
+
+4️⃣ Data attribute selector
+                  button[data-type="special"]{
+                      background-color: yellow;
+                      font-size: 18px;
+                  }
+Meaning
+        Select buttons with a custom attribute.
+
+Example HTML:
+              <button data-type="special">Click</button>
+              <button>Normal</button>
+Result
+              special button → yellow background
+              normal button → unchanged
+
+Custom attributes usually start with:
+data-
+
+Example:
+          data-user
+          data-role
+          data-type
+
+
+
+Other important CSS selectors
+5️⃣ Universal selector
+                  *{
+                      margin: 0;
+                      padding: 0;
+                  }
+Selects every element on the page.
+Often used for CSS resets.
+
+6️⃣ Group selector
+              h1, h2, h3{
+                  color: blue;
+              }
+Applies the same style to multiple elements.
+
+7️⃣ Adjacent sibling selector
+              h2 + p{
+                  color: green;
+              }
+Selects the first paragraph immediately after an h2.
+Example:
+              <h2>Title</h2>
+              <p>Styled</p>
+              <p>Not styled</p>
+
+8️⃣ General sibling selector
+              h2 ~ p{
+                  color: purple;
+              }
+Selects all paragraphs after h2.
+
+Example:
+              <h2>Title</h2>
+              <p>Styled</p>
+              <p>Styled</p>
+
+9️⃣ Pseudo-class selectors
+These style elements in specific states.
+
+1.Hover
+          button:hover{
+              background: blue;
+          }
+When the mouse is over the button.
+
+2.Focus
+            input:focus{
+                border: 2px solid blue;
+            }
+When input is selected.
+
+3.First child
+            li:first-child{
+                font-weight: bold;
+            }
+Targets the first item in a list.
+
+3.Last child
+            li:last-child{
+                color: red;
+            }
+Targets the last item.
+
+
+🔟 Pseudo-elements
+These style parts of elements.
+
+1.First letter
+            p::first-letter{
+                font-size: 30px;
+            }
+
+2.Before
+            h2::before{
+                content: "⭐ ";
+            }
+Adds content before the element.
+
+3.After
+          h2::after{
+              content: " ✔";
+          }
+Adds content after the element.
+
+------------------------------------------------------------------
+Quick summary of advanced selectors
+
+      Selector                   	Meaning
+     .class p	                descendant selector
+     .class > p	                direct child
+input[type="text"]	          attribute selector
+[data-type="special"]	          data attribute
+         *	                   universal selector
+     h2 + p	                   adjacent sibling
+     h2 ~ p	                  general sibling
+         :                    hover	pseudo-class
+        ::                        before	
+
 -----------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------
 
