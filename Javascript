@@ -324,9 +324,207 @@ Cleaner architecture
 Preferred in modern JS frameworks
 Most modern design patterns favor: Composition over Inheritance
 
+--------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+
+An event listener in JavaScript is used to detect when something happens in the browser and run a function in response.
+Examples of events:
+                  clicking a button
+                  typing in an input
+                  hovering over an element
+                  submitting a form
+                  pressing a key
+JavaScript listens for these events and executes code when they occur.
+
+1️⃣ Basic syntax
+element.addEventListener("event", function);
+Example:
+        button.addEventListener("click", myFunction);
+Meaning:
+          When the button is clicked
+          run myFunction()
 
 
+2️⃣ Simple example
+HTML:
+        <button id="btn">Click me</button>
+JavaScript:
+          const btn = document.getElementById("btn");
+          
+          btn.addEventListener("click", function(){
+              alert("Button clicked!");
+          });
 
+
+Common events:- 
+    Event                           	When it happens
+
+    click	                              mouse click
+   mouseover	                          mouse hover
+    mouseout	                          mouse leaves
+    keydown	                            key pressed
+    submit	                            form submitted
+    input	                            user types in input
+
+----------------------------------------------------------------------------------------------------------------------------------------
+Event Progression - Event bubbling, Event Capture, Event Delegation..........
+1️⃣ Event Bubbling
+Event bubbling means an event starts from the target element and moves upward through its ancestors.
+Example HTML
+            <div id="parent">
+                <button id="child">Click me</button>
+            </div>
+JavaScript
+            document.getElementById("parent").addEventListener("click", () => {
+                console.log("Parent clicked");
+            });
+            
+            document.getElementById("child").addEventListener("click", () => {
+                console.log("Button clicked");
+            });
+What happens when the button is clicked
+Button clicked
+Parent clicked
+
+Why?
+Because the event bubbles upward.
+Event flow
+            button
+               ↓
+            parent div
+               ↓
+            body
+               ↓
+            document
+-------------------------------------------------------
+Event capturing
+Event capturing is the opposite direction.
+Events start at the top of the DOM and move down to the target.
+Normally browsers use bubbling by default.
+To enable capturing:
+          parent.addEventListener("click", handler, true);
+The third parameter true activates capture phase.
+
+-------------------------------------------------------
+event.stopPropagation()
+stopPropagation() stops the event from continuing its path.
+Example:
+          child.addEventListener("click", (e) => {
+              e.stopPropagation();
+              console.log("Button clicked");
+          });
+Now clicking the button prints:     Button clicked
+The event does not reach the parent.
+So bubbling stops.
+---------------------------------------------------------
+preventDefault()
+Some HTML elements have default browser behavior.
+Examples:
+
+      Element	             Default behavior
+      link <a>	        navigate to another page
+        form	           submit and reload page
+      checkbox	            toggle check
+   button in form	          submit form
+
+preventDefault() stops that behavior.
+------------------------------------------------------
+
+2️⃣ Event Delegation
+Event delegation means attaching one event listener to a parent instead of many child elements.
+Event delegation is a coding technique that uses event bubbling to handle events more efficiently.
+Instead of adding event listeners to many child elements, you attach one listener to the parent.
+This is very useful when there are many similar elements.
+Example
+HTML:
+              <ul id="menu">
+                  <li>Home</li>
+                  <li>Profile</li>
+                  <li>Settings</li>
+              </ul>
+
+JavaScript:
+              document.getElementById("menu").addEventListener("click", (event) => {
+                  console.log(event.target.textContent);
+              });
+What happens
+When a user clicks:
+Profile
+Console prints:
+Profile
+Even though the listener is on ul, the click works for all li elements.
+
+Why developers use this
+Instead of:
+          li1.addEventListener(...)
+          li2.addEventListener(...)
+          li3.addEventListener(...)
+You write one listener.
+This improves performance.
+
+
+3️⃣ removeEventListener
+Sometimes you want to stop listening to an event.
+That’s what removeEventListener() does.
+Example
+          function sayHello(){
+              console.log("Hello");
+          }
+          const btn = document.querySelector("button");
+          btn.addEventListener("click", sayHello);
+
+Now remove it:
+          btn.removeEventListener("click", sayHello);
+
+Now clicking the button does nothing.
+Important rule
+removeEventListener only works if the same function reference is used.
+
+This works:
+            btn.addEventListener("click", sayHello);
+            btn.removeEventListener("click", sayHello);
+
+This does NOT work:
+            btn.addEventListener("click", () => console.log("Hi"));
+            btn.removeEventListener("click", () => console.log("Hi"));
+Because they are different functions.
+
+--------------------------------------------------------------------------------------------------------------
+
+Real-world application examples
+1️⃣ Dropdown menus
+Click inside dropdown → stop propagation so menu doesn't close.
+
+            dropdown.addEventListener("click", (e) => {
+               e.stopPropagation();
+            });
+
+2️⃣ Form validation
+Prevent form submission until validation passes.
+
+              form.addEventListener("submit", (e) => {
+                 e.preventDefault();
+              });
+
+3️⃣ Event delegation in large lists
+Used in dashboards, chat apps, task lists.
+              
+              list.addEventListener("click", (e) => {
+                 if(e.target.matches(".delete")){
+                     e.target.parentElement.remove();
+                 }
+              });
+Only one listener handles all items.
+
+4️⃣ Modal dialogs
+Click outside modal → close it.
+Click inside modal → stop propagation so it doesn't close.
+
+Most real-world apps use:
+event bubbling (for event delegation)
+preventDefault (forms, links)
+stopPropagation (modals, dropdowns)
+Capturing is rarely used unless needed for special control.
 
 
 
